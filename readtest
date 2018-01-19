@@ -1,0 +1,63 @@
+#!/usr/bin/python
+import os
+from os import F_OK, W_OK, R_OK, X_OK
+import re
+f = open("yuhao.txt", "r")
+str3 = f.read()
+f.close()
+print(len(str3))
+print(str3)
+if "98227" in str3:
+    print("true")
+else:
+    print("false")
+ret = os.access("yuhao.txt", F_OK)
+print(ret)
+ret1 = os.access("yuhao.txt", W_OK)
+print(ret1)
+ret2 = os.access("yuhao.txt", R_OK)
+print(ret2)
+ret3 = os.access("yuhao.txt", X_OK)
+print(ret3)
+
+
+class Person:
+    name = "unkonw"
+
+    def myname(self,tname):
+        self.name = tname
+
+    def getname(self):
+        return  self.name
+
+
+
+x = Person()
+print(x.name, x.getname(),)
+x.myname("yuhao")
+print(x.name,)
+print(len(str3))
+
+
+str1 = "yuahoniaho"
+t = re.search("yyyy", str1)
+if t == None:
+    print("true")
+print(t)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

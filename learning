@@ -1,0 +1,6 @@
+#!/usr/bin/python3
+def hello(str3):
+    print("你好"+str3,2-9)
+
+
+hello("余豪")
