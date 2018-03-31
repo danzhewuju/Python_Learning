@@ -11,7 +11,7 @@ i = 1
 
 for link in soup.find_all('a'):
     s = link.get('href')
-    if s != None:
+    if s!=None:
         f.write(str(i) +"\t")
         f.write(s)
         f.write("\n")
