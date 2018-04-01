@@ -54,8 +54,43 @@ def find_even_index(arr):
     return result
 
 
-yh = [0, 0, 0]
-print(find_even_index(yh))
+def tickets(people):
+    people = sorted(people)
+    flag = True
+    suma = [0, 0, 0]
+    for number in people:
+        if number == 25:
+            suma[0] += 1
+        else:
+            if number == 50:
+                suma[1] += 1
+                suma[0] -= 1
+                if suma[0] < 0:
+                    flag = False
+                    break
+            else:
+                if suma[1] >= 1:
+                    suma[2] += 1
+                    suma[0] -= 1
+                    suma[1] -= 1
+                    if suma[0] < 0:
+                        flag =False
+                        break
+                else:
+                    suma[0] -= 3
+                    suma[2] += 1
+                    if suma[0] < 0:
+                        flag =False
+                        break
+    if flag:
+        return "YES"
+    else:
+        return "NO"
+
+
+yh = [25, 100]
+print(tickets(yh))
+
 
 
 
