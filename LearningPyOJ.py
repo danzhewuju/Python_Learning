@@ -74,13 +74,13 @@ def tickets(people):
                     suma[0] -= 1
                     suma[1] -= 1
                     if suma[0] < 0:
-                        flag =False
+                        flag = False
                         break
                 else:
                     suma[0] -= 3
                     suma[2] += 1
                     if suma[0] < 0:
-                        flag =False
+                        flag = False
                         break
     if flag:
         return "YES"
@@ -88,8 +88,10 @@ def tickets(people):
         return "NO"
 
 
-yh = [25, 100]
-print(tickets(yh))
+ch = {"yuhao": 1996, "wanjian": 1997}
+print(ch["yuhao"])
+'''yh = [25, 100]
+print(tickets(yh))'''
 
 
 
