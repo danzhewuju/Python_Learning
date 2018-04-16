@@ -27,3 +27,29 @@ def duplicate_encode(word):
 
 
 print(duplicate_encode("Success"))
+
+
+def translate(n):
+    st = ""
+    if n <= 0:
+        st = "00"
+    else:
+        if n > 255 :
+            st = "ff"
+        else:
+            st = str(hex(n))
+            st = st[2:4]
+            if len(st) == 1:
+                st = "0" + st
+    return st
+
+
+def rgb(r, g, b):
+    result = translate(r)
+    result += translate(g)
+    result += translate(b)
+    result = result.upper()
+    return result
+
+
+print(rgb(0, 123, 1))
