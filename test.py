@@ -1,4 +1,5 @@
 #!usr/bin/python
-mes = "apples, pears # and bananas\ngrapes\nbananas !apples"
-str1 = "Hello world"
-print(str1[11:])
+yh = "123.234"
+ch = "3456"
+print(yh.split("."))
+print(ch.split("."))
