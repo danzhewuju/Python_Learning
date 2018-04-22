@@ -1,5 +1,7 @@
 #!usr/bin/python
-yh = "123.234"
+import PICaculate
+
+yh = "00123234.190000"
 ch = "3456"
-print(yh.split("."))
-print(ch.split("."))
+# yh = yh[:yh.index(".")]+yh[yh.index(".")+1:]
+print(PICaculate.format_number(yh))
