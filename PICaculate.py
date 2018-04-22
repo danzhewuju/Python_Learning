@@ -205,11 +205,12 @@ def caculate_pi(time, dec):
 
 start = time.clock()
 # print(mul("1.570553001", "2"))
-result = caculate_pi(50,100)
+result = caculate_pi(50, 100)
 f = open("PI.txt", "w+")
 print(result)
 length = len(result)
-count = 0; raw = 0
+count = 0
+raw = 0
 while count < length:
     raw = 0
     while raw < 100 and count < length:
@@ -217,9 +218,9 @@ while count < length:
         raw += 1
         count += 1
     f.write("\n")
-print len(result)-1, "bit"
+print(len(result)-1, "bit")
 f.write(str(len(result)-1)+"bit")
 end = time.clock()
 f.write("\n"+"Running Time:" + str(end - start)+"s")
 f.close()
-print "Running Time:", (end - start), "s"
+print("Running Time:", (end - start), "s")
