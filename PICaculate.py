@@ -46,6 +46,8 @@ def format_number(a):
     index = 0
     while result[index] == "0":
         result = result[index+1:]
+    if result[0] == ".":
+        result = "0"+result
     return result
 
 
@@ -79,7 +81,7 @@ def radd(a, b):
 
 
 def aadd(a, b):
-    ra = a;
+    ra = a
     rb = b
     numbera = ra.split(".");
     numberb = rb.split(".")
@@ -135,8 +137,12 @@ def division(a, b, time):
 def mul(a, b):
     result = ""
     tem = 0
-    ra = a[::-1];
-    rb = b[::-1]
+    if len(a) > len(b):
+        ra = b[::-1]
+        rb = a[::-1]
+    else:
+        ra = a[::-1]
+        rb = b[::-1]
     count = 0
     if "." in ra:
         ra = ra[:ra.index(".")] + ra[ra.index(".") + 1:]
@@ -172,15 +178,48 @@ def mul(a, b):
                 dec = len(a) - 1 - a.index(".")
             else:
                 dec = len(b) - 1 - b.index(".")
+    if dec >= len(result):
+        d = dec-len(result)+1
+        for index in range(d):
+            result = "0"+result
     if dec != 0:
         result = result[:-dec] + "." + result[-dec:]
     result = format_number(result)
     return result
 
 
+def caculate_pi(time, dec):
+    pi = "0"
+    ra = 1
+    rb = 3
+    tem = "1"
+    pi = aadd(pi, "1")
+    for index in range(time):
+        tem = mul(tem, division(ra, rb, dec))
+        pi = aadd(pi, tem)
+        ra += 1
+        rb += 2
+    pi = mul(pi, "2")
+    return pi
+
+
 start = time.clock()
-
-
-
+# print(mul("1.570553001", "2"))
+result = caculate_pi(50,100)
+f = open("PI.txt", "w+")
+print(result)
+length = len(result)
+count = 0; raw = 0
+while count < length:
+    raw = 0
+    while raw < 100 and count < length:
+        f.write(result[count])
+        raw += 1
+        count += 1
+    f.write("\n")
+print len(result)-1, "bit"
+f.write(str(len(result)-1)+"bit")
 end = time.clock()
-print(end - start)
+f.write("\n"+"Running Time:" + str(end - start)+"s")
+f.close()
+print "Running Time:", (end - start), "s"
