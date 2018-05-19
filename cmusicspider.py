@@ -11,7 +11,7 @@ import spiderlearning1
 
 
 def get_all_hotSong():     #获取热歌榜所有歌曲名称和id
-    url='http://music.163.com/discover/toplist?id=9723756'    #网易云云音乐热歌榜url
+    url='http://music.163.com/discover/toplist?id=385463057'    #网易云云音乐热歌榜url
     header={    #请求头部
         'User-Agent':'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
     }
@@ -99,16 +99,17 @@ def getcomment(startpage, song_id, song_name):
     total = int(json_dict['total'])
     comment = json_dict['hotComments']
     index = 0
-    filename = song_name+".txt"
+    dirfile = "./SheLove/"
+    filename = dirfile+song_name+".txt"
     fhandel = open(filename, 'a')
     fhandel.write(song_name+":"+"总评论数："+str(total)+"\n")
     fhandel.write("热评："+"\n")
     num = 0
     for item in comment:
         num += 1
-        fhandel.write(str(num) + "." + item['user']['nickname'] + item['content'] + "\n")
+        fhandel.write(str(num) + "." + item['user']['nickname'] + ":" + item['content'] + "\n")
     fhandel.write("\n----------------------------------------------\n")
-    print("正在抓取:"+song_name+"评论......")
+    print("正在抓取歌曲:"+song_name+" 全部评论......")
     print("总数：%d" % total)
     while index < total:
         page = index // 100
@@ -122,7 +123,7 @@ def getcomment(startpage, song_id, song_name):
         json_dict = json.loads(reponse)
         for item in json_dict['comments']:
             index += 1
-            fhandel.write(str(index)+"."+item['user']['nickname']+item['content']+"\n")
+            fhandel.write(str(index)+"."+item['user']['nickname']+":"+item['content']+"\n")
         print("正在爬取:"+song_name+"第%d/%d条评论......" % (index, total))
     fhandel.write('\n==============================================\n\n')
     fhandel.close()
@@ -130,11 +131,11 @@ def getcomment(startpage, song_id, song_name):
     return True
 
 
-# getcomment(0, "254574")
+
 
 def run():
     hot_song_name, hot_song_id = get_all_hotSong()  # 获取热歌榜所有歌曲名称和id
-    num = 67
+    num = 0
     while num < len(hot_song_name):  # 保存所有热歌榜中的热评
         print(num)
         getcomment(0, hot_song_id[num], hot_song_name[num])
@@ -142,10 +143,8 @@ def run():
     return True
 
 
-run()
-# comments = test(spiderlearning1.get_params(0), spiderlearning1.get_encSecKey(), "557581967")
-# for index in range(len(comments)):
-#     print(str(index+1)+":"+comments[index]['user']['nickname']+comments[index]['content'])
+getcomment(0, "468423427", "海天离梦")
+# run()
 
 
 

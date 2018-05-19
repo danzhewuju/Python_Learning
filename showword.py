@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import jieba
 
-text = open("hotsong.txt", "rb").read()
+text = open("告白气球.txt", "rb").read()
 # 结巴分词
 wordlist = jieba.cut(text, cut_all=True)
 wl = " ".join(wordlist)
