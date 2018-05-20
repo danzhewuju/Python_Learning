@@ -7,7 +7,7 @@ import urllib.error
 import urllib.parse
 import json
 import spiderlearning1
-
+import Toolc.Toolc
 
 
 def get_all_hotSong():     #获取热歌榜所有歌曲名称和id
@@ -105,9 +105,11 @@ def getcomment(startpage, song_id, song_name):
     fhandel.write(song_name+":"+"总评论数："+str(total)+"\n")
     fhandel.write("热评："+"\n")
     num = 0
+    Tooltime = Toolc.Toolc.TimeR()
     for item in comment:
         num += 1
-        fhandel.write(str(num) + "." + item['user']['nickname'] + ":" + item['content'] + "\n")
+        timelocat = Tooltime.getime(item['time'])
+        fhandel.write(str(num) + "." + item['user']['nickname'] + ":" + item['content'] + "\t"+timelocat+"\n")
     fhandel.write("\n----------------------------------------------\n")
     print("正在抓取歌曲:"+song_name+" 全部评论......")
     print("总数：%d" % total)
@@ -123,7 +125,8 @@ def getcomment(startpage, song_id, song_name):
         json_dict = json.loads(reponse)
         for item in json_dict['comments']:
             index += 1
-            fhandel.write(str(index)+"."+item['user']['nickname']+":"+item['content']+"\n")
+            timelocat = Tooltime.getime(item['time'])
+            fhandel.write(str(index)+"."+item['user']['nickname']+":"+item['content']+"\t"+timelocat+"\n")
         print("正在爬取:"+song_name+"第%d/%d条评论......" % (index, total))
     fhandel.write('\n==============================================\n\n')
     fhandel.close()
@@ -143,7 +146,7 @@ def run():
     return True
 
 
-getcomment(0, "468423427", "海天离梦")
+getcomment(0, "296885", "寂寞寂寞就好")
 # run()
 
 
